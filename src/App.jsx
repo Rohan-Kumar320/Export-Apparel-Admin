@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { auth } from "./firebase";
+import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
-import Dashboard from "./components/Dasboard";
 import ProductsPage from "./components/ProductPage";
 import ProductForm from "./components/ProductForm";
 import CategoriesPage from "./components/CategoriesPage";
 import CategoryForm from "./components/CategoryForm";
-import OrdersPage from "./components/OrdersPage";
+import OrdersPage from "./components/OrdersPage"
 
 
 const ProtectedRoute = ({ children }) => {
@@ -64,7 +64,8 @@ const App = () => {
           path="/orders"
           element={<ProtectedRoute><OrdersPage /></ProtectedRoute>}
         />
-        <Route path="*" element={<Navigate to="/login" />} />
+        <Route path="/" element={<Navigate to="/login" replace />} /> {/* Explicit root route */}
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>
   );
